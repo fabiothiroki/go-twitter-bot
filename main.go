@@ -17,4 +17,5 @@ func main() {
 	quote := GetLeastRecentPostedQuote()
 
 	PostTweetStatusUpdate(quote.text + " — " + quote.author)
+	UpdatePostDate(quote.Id)
 }
