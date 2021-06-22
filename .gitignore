@@ -1,4 +1,5 @@
 .env
+go-twitter-bot
 
 # Binaries for programs and plugins
 *.exe
