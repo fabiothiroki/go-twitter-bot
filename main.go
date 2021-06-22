@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/dghubble/go-twitter/twitter"
@@ -20,13 +19,14 @@ func main() {
 	creds := getCreds()
 	client := getClient(creds)
 
-	tweet, resp, err := client.Statuses.Update("just setting up my twttr", nil)
+	quote := GetLeastRecentPostedQuote()
+	_, resp, err := client.Statuses.Update(quote.text+" — "+quote.author, nil)
 
 	if err != nil {
 		log.Fatal("Error publishing tweet", err)
 	}
 
-	fmt.Println("Hello World! ", resp, tweet)
+	log.Println("Post tweet response", resp.Status)
 }
 
 func getClient(creds *creds) *twitter.Client {
