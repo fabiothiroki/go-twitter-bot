@@ -1,0 +1,6 @@
+{
+    "name": "Go Twitter Bot",
+    "description": "A bot that publishes content automatically.",
+    "repository": "https://github.com/fabiothiroki/go-twitter-bot",
+    "keywords": ["go", "golang", "twitter", "bot"]
+  }
