@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 
+	"internal/twitter"
+
 	"github.com/joho/godotenv"
 )
 
@@ -15,7 +17,8 @@ func main() {
 	}
 
 	quote := GetLeastRecentPostedQuote()
+	status := quote.text + " — " + quote.author
 
-	PostTweetStatusUpdate(quote.text + " — " + quote.author)
+	twitter.PostTweetStatusUpdate(twitter.TwitterClient(), status)
 	UpdatePostDate(quote.Id)
 }
