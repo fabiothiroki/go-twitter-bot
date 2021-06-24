@@ -14,7 +14,7 @@ type Creds struct {
 
 // GetTwitterCreds returns the keys required for authentication
 func GetTwitterCreds() *Creds {
-	return &creds{
+	return &Creds{
 		ConsumerKey:    os.Getenv("CONSUMER_KEY"),
 		ConsumerSecret: os.Getenv("CONSUMER_SECRET"),
 		AccessToken:    os.Getenv("ACCESS_TOKEN"),

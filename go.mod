@@ -7,6 +7,10 @@ require (
 	github.com/dghubble/oauth1 v0.7.0
 	github.com/jackc/pgx/v4 v4.11.0
 	github.com/joho/godotenv v1.3.0
+	internal/twitter v1.0.0
+
 )
+
+replace internal/twitter => ./internal/twitter
 
 // +heroku goVersion go1.15
