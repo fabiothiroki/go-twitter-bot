@@ -1,17 +1,19 @@
-package main
+package twitter
 
 import (
 	"os"
 )
 
-type creds struct {
+// Creds represents the values required for twitter authentication
+type Creds struct {
 	ConsumerKey    string
 	ConsumerSecret string
 	AccessToken    string
 	AccessSecret   string
 }
 
-func getCreds() *creds {
+// GetTwitterCreds returns the keys required for authentication
+func GetTwitterCreds() *Creds {
 	return &creds{
 		ConsumerKey:    os.Getenv("CONSUMER_KEY"),
 		ConsumerSecret: os.Getenv("CONSUMER_SECRET"),
