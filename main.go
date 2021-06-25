@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"github.com/fabiothiroki/go-twitter-bot/internal/postformatter"
 	"github.com/fabiothiroki/go-twitter-bot/internal/twitter"
 
 	"github.com/fabiothiroki/go-twitter-bot/internal/database"
@@ -19,7 +20,7 @@ func main() {
 	}
 
 	quote := database.GetLeastRecentPostedQuote()
-	status := quote.Text + " — " + quote.Author
+	status := postformatter.Format(quote)
 
 	twitter.PostTweetStatusUpdate(twitter.TwitterClient(), status)
 	database.UpdatePostDate(quote.ID)
