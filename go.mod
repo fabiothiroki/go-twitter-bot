@@ -15,3 +15,5 @@ require (
 replace github.com/fabiothiroki/go-twitter-bot/internal/twitter => ./internal/twitter
 
 replace github.com/fabiothiroki/go-twitter-bot/internal/database => ./internal/database
+
+replace github.com/fabiothiroki/go-twitter-bot/internal/postformatter => ./internal/postformatter
