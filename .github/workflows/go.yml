@@ -18,6 +18,17 @@ jobs:
 
     - name: Build
       run: go build -v ./...
+  
+  coverage:
+    needs: [ build ]
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
 
-    - name: Test
-      run: go test -v ./...
+    - uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID: 437e0396839e6b94398aff642a7fcdd00b8770338e0e9531ca6451074a93b2b6
+      with:
+        coverageCommand: go test -v -cover ./...
