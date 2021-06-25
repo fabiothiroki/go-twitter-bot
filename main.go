@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"internal/database"
 	"internal/twitter"
 
 	"github.com/joho/godotenv"
@@ -16,9 +17,9 @@ func main() {
 		log.Println("Error loading .env file")
 	}
 
-	quote := GetLeastRecentPostedQuote()
-	status := quote.text + " — " + quote.author
+	quote := database.GetLeastRecentPostedQuote()
+	status := quote.Text + " — " + quote.Author
 
 	twitter.PostTweetStatusUpdate(twitter.TwitterClient(), status)
-	UpdatePostDate(quote.ID)
+	database.UpdatePostDate(quote.ID)
 }
