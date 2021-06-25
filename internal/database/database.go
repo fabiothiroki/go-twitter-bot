@@ -1,4 +1,4 @@
-package main
+package database
 
 import (
 	"context"
@@ -12,8 +12,8 @@ import (
 // Quote represents the database entity
 type Quote struct {
 	ID     int
-	text   string
-	author string
+	Text   string
+	Author string
 }
 
 func openConnection() *pgx.Conn {
@@ -33,7 +33,7 @@ func GetLeastRecentPostedQuote() *Quote {
 
 	query := "select id, text, author from quotes order by last_posted_at ASC LIMIT 1"
 	quote := &Quote{}
-	conn.QueryRow(context.Background(), query).Scan(&quote.ID, &quote.text, &quote.author)
+	conn.QueryRow(context.Background(), query).Scan(&quote.ID, &quote.Text, &quote.Author)
 
 	log.Printf("Quote %v", quote)
 
