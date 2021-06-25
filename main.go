@@ -20,5 +20,5 @@ func main() {
 	status := quote.text + " — " + quote.author
 
 	twitter.PostTweetStatusUpdate(twitter.TwitterClient(), status)
-	UpdatePostDate(quote.Id)
+	UpdatePostDate(quote.ID)
 }
