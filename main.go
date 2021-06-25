@@ -3,8 +3,9 @@ package main
 import (
 	"log"
 
-	"internal/database"
-	"internal/twitter"
+	"github.com/fabiothiroki/go-twitter-bot/internal/twitter"
+
+	"github.com/fabiothiroki/go-twitter-bot/internal/database"
 
 	"github.com/joho/godotenv"
 )
