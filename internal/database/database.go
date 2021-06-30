@@ -9,14 +9,15 @@ import (
 	"github.com/jackc/pgx/v4"
 )
 
-// Quote represents the database entity
-type Quote struct {
-	ID     int
-	Text   string
-	Author string
+// Dbconn abstracts the database connection
+type Dbconn interface {
+	Close(ctx context.Context) error
+	Query(ctx context.Context, sql string, optionsAndArgs ...interface{}) (pgx.Rows, error)
+	QueryRow(ctx context.Context, sql string, optionsAndArgs ...interface{}) pgx.Row
 }
 
-func openConnection() *pgx.Conn {
+// OpenConnection returns a valid db connection
+func OpenConnection() Dbconn {
 	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
 
 	if err != nil {
@@ -27,8 +28,7 @@ func openConnection() *pgx.Conn {
 }
 
 // GetLeastRecentPostedQuote returns the oldest posted quote from database
-func GetLeastRecentPostedQuote() *Quote {
-	conn := openConnection()
+func GetLeastRecentPostedQuote(conn Dbconn) *Quote {
 	defer conn.Close(context.Background())
 
 	query := "select id, text, author from quotes order by last_posted_at ASC LIMIT 1"
@@ -42,7 +42,7 @@ func GetLeastRecentPostedQuote() *Quote {
 
 // UpdatePostDate updates the posted date based on quoteId
 func UpdatePostDate(quoteID int) {
-	conn := openConnection()
+	conn := OpenConnection()
 	defer conn.Close(context.Background())
 
 	query := "update quotes set last_posted_at=$1 where id=$2"
