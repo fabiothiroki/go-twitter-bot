@@ -19,7 +19,7 @@ func main() {
 		log.Println("Error loading .env file")
 	}
 
-	quote := database.GetLeastRecentPostedQuote()
+	quote := database.GetLeastRecentPostedQuote(database.OpenConnection())
 	status := postformatter.Format(quote)
 
 	twitter.PostTweetStatusUpdate(twitter.TwitterClient(), status)

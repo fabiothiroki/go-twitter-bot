@@ -9,6 +9,7 @@ require (
 	github.com/dghubble/oauth1 v0.7.0 // indirect
 	github.com/jackc/pgx/v4 v4.11.0 // indirect
 	github.com/joho/godotenv v1.3.0
+	github.com/pashagolub/pgxmock v1.2.0 // indirect
 	github.com/stretchr/testify v1.7.0 // indirect
 )
 
