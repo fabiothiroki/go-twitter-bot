@@ -1,7 +1,9 @@
 package main
 
 import (
+	"context"
 	"log"
+	"time"
 
 	"github.com/fabiothiroki/go-twitter-bot/internal/postformatter"
 	"github.com/fabiothiroki/go-twitter-bot/internal/twitter"
@@ -19,9 +21,13 @@ func main() {
 		log.Println("Error loading .env file")
 	}
 
-	quote := database.GetLeastRecentPostedQuote(database.OpenConnection())
+	conn := database.OpenConnection()
+	defer conn.Close(context.Background())
+	dbService := &database.DbService{DbConn: conn}
+
+	quote := dbService.GetLeastRecentPostedQuote()
 	status := postformatter.Format(quote)
 
 	twitter.PostTweetStatusUpdate(twitter.TwitterClient(), status)
-	database.UpdatePostDate(quote.ID)
+	dbService.UpdatePostDate(quote.ID, time.Now())
 }
