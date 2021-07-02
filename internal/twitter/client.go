@@ -5,7 +5,8 @@ import (
 	"github.com/dghubble/oauth1"
 )
 
-func TwitterClient() *twitter.Client {
+// Client returns an authenticated twitter http client
+func Client() *twitter.Client {
 	creds := GetTwitterCreds()
 	config := oauth1.NewConfig(creds.ConsumerKey, creds.ConsumerSecret)
 	token := oauth1.NewToken(creds.AccessToken, creds.AccessSecret)
