@@ -28,6 +28,6 @@ func main() {
 	quote := dbService.GetLeastRecentPostedQuote()
 	status := postformatter.Format(quote)
 
-	twitter.PostTweetStatusUpdate(twitter.TwitterClient(), status)
+	twitter.PostTweetStatusUpdate(twitter.Client().Statuses, status)
 	dbService.UpdatePostDate(quote.ID, time.Now())
 }
