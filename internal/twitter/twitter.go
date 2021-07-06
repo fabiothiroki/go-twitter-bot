@@ -13,12 +13,13 @@ type StatusService interface {
 }
 
 // PostTweetStatusUpdate publishes the status parameter on timeline
-func PostTweetStatusUpdate(statusService StatusService, status string) {
-	_, resp, err := statusService.Update(status, nil)
+func PostTweetStatusUpdate(statusService StatusService, status string) (*twitter.Tweet, error) {
+	tweet, resp, err := statusService.Update(status, nil)
 
 	if err != nil {
-		log.Fatal("Error publishing tweet", err)
+		log.Panic("Error publishing tweet", err)
 	}
 
 	log.Println("Post tweet response", resp.Status)
+	return tweet, err
 }
