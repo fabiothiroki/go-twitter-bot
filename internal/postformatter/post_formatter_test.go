@@ -12,5 +12,5 @@ func TestFormattedMessage(t *testing.T) {
 
 	result := Format(&quote)
 
-	assert.Equal(t, result, "tweet — Fabio Hiroki #prodmgmt")
+	assert.Equal(t, result, "tweet — Fabio Hiroki #prodmgmt #productmanagement")
 }
